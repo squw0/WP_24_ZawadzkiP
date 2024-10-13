@@ -44,6 +44,7 @@ public class L01_Kalkulator extends JFrame{
         buttonPanel.add(new JLabel()); // wstawiamy etykietę czyli puste pole
         buttonPanel.add(new JLabel()); // wstawiamy etykietę czyli puste pole
         buttonPanel.add(new JLabel()); // wstawiamy etykietę czyli puste pole
+        buttonPanel.add(new JLabel()); // wstawiamy etykietę czyli puste pole
 
         button_0.addActionListener(new ActionListener() {
             @Override
@@ -224,7 +225,7 @@ public class L01_Kalkulator extends JFrame{
         });
         
        
-        buttonPanel.add(button_C);
+        
         buttonPanel.add(button_7);
         buttonPanel.add(button_8);
         buttonPanel.add(button_9);
@@ -237,11 +238,11 @@ public class L01_Kalkulator extends JFrame{
         buttonPanel.add(button_2);
         buttonPanel.add(button_3);
         buttonPanel.add(buttonMultiply);
-        buttonPanel.add(new JLabel()); // wstawiamy etykietę czyli puste pole
+        buttonPanel.add(button_C);
         buttonPanel.add(button_0);
-        buttonPanel.add(new JLabel()); // wstawiamy etykietę czyli puste pole
-        buttonPanel.add(buttonDivide);
         buttonPanel.add(button_BACKSPACE);
+        buttonPanel.add(buttonDivide);
+        buttonPanel.add(new JLabel()); // wstawiamy etykietę czyli puste pole
         buttonPanel.add(new JLabel()); // wstawiamy etykietę czyli puste pole
         buttonPanel.add(new JLabel()); // wstawiamy etykietę czyli puste pole
         buttonPanel.add(buttonEquals);
