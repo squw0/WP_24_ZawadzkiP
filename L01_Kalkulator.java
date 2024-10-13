@@ -1,25 +1,17 @@
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.script.ScriptEngineManager;
-import javax.swing.plaf.ActionMapUIResource;
-import javax.swing.*;
 import java.awt.*;
-import javax.swing.JButton;
-import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptEngine;
-import javax.script.ScriptException;
+import javax.swing.*;
+//import javax.swing.JTextField;
+//import javax.swing.JButton;
+//import javax.swing.JTextField;
+//import javax.swing.plaf.ActionMapUIResource;
+//import javax.script.ScriptEngineManager;
+//import javax.script.ScriptEngine;
+//import javax.script.ScriptException;
 
-
-import java.awt.BorderLayout;
 
 public class L01_Kalkulator extends JFrame{
-
     private JButton button_1 = new JButton("1");
     private JButton button_2 = new JButton("2");
     private JButton button_3 = new JButton("3");
@@ -38,19 +30,27 @@ public class L01_Kalkulator extends JFrame{
     private JButton buttonEquals = new JButton("=");
     private JButton button_BACKSPACE = new JButton("<-");
     private JTextField textScreen;
+    private int Cyfra1, Cyfra2;
 
 
     public L01_Kalkulator(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel mainPanel = new JPanel(new BorderLayout()); // tworzymy głowny panel
-        textScreen = new JTextField();
-        mainPanel.add("North", textScreen); // dodanie komponentu do panela
+        textScreen = new JTextField(); // okno jako obiekt
+        mainPanel.add("North", textScreen); // dodanie komponentu do panela na górze
 
 
         JPanel buttonPanel = new JPanel(new GridLayout(6,4));
         buttonPanel.add(new JLabel()); // wstawiamy etykietę czyli puste pole
         buttonPanel.add(new JLabel()); // wstawiamy etykietę czyli puste pole
         buttonPanel.add(new JLabel()); // wstawiamy etykietę czyli puste pole
+
+        button_0.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textScreen.setText(textScreen.getText() + "0");
+            }
+        });
 
         button_1.addActionListener(new ActionListener() {
             @Override
@@ -115,23 +115,33 @@ public class L01_Kalkulator extends JFrame{
             }
         });
        
-        button_0.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                textScreen.setText(textScreen.getText() + "0");
-            }
-        });
+        //
+        //
+        //
        
         button_C.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 textScreen.setText("");
+                Cyfra1 = 0;
+                Cyfra2 = 0;
+            }
+        });
+
+        button_BACKSPACE.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String currentText = textScreen.getText();
+                if (currentText.length() > 0) {
+                    textScreen.setText(currentText.substring(0, currentText.length() - 1));
+                }
             }
         });
        
         buttonMinus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Cyfra1 = Integer.parseInt(textScreen.getText());
                 textScreen.setText(textScreen.getText() + "-");
             }
         });
@@ -139,7 +149,7 @@ public class L01_Kalkulator extends JFrame{
         buttonPlus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               
+                Cyfra1 = Integer.parseInt(textScreen.getText());
                 textScreen.setText(textScreen.getText() + "+");
             }
         });
@@ -161,40 +171,59 @@ public class L01_Kalkulator extends JFrame{
         buttonEquals.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // pierwsza liczba kończy się znakiem /+* itd druga liczba kończy się =
-                System.out.println("wynik poprawny!!!");
-            }
-        });
-       
-        // buttonEquals.addActionListener(new ActionListener() {
-        //     @Override
-        //     public void actionPerformed(ActionEvent e) {
-        //         String expression = textScreen.getText();
-        //         try {
-        //             ScriptEngineManager manager = new ScriptEngineManager();
-        //             ScriptEngine engine = manager.getEngineByName("JavaScript");
-        //             Object result = engine.eval(expression);
-        //             textScreen.setText(result.toString());
-        //         } catch (Exception ex) {
-        //             textScreen.setText("Błąd");
-        //         }
-        //     }
-        // });
-       
-
-        button_BACKSPACE.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String currentText = textScreen.getText();
-                if (currentText.length() > 0) {
-                    textScreen.setText(currentText.substring(0, currentText.length() - 1));
+                String screenText = textScreen.getText(); // pobranie zawartości ekranu
+                int operatorIndex = -1; // pozycja operatora
+                if (screenText.contains("+")) {
+                    operatorIndex = screenText.indexOf("+");
+                } else if (screenText.contains("-")) {
+                    operatorIndex = screenText.indexOf("-");
+                } else if (screenText.contains("*")) {
+                    operatorIndex = screenText.indexOf("*");
+                } else if (screenText.contains("/")) {
+                    operatorIndex = screenText.indexOf("/");
+                }
+                if (operatorIndex == -1) {
+                    textScreen.setText("brak operatora!!!!!");
+                    return;
+                }
+                try {
+                    Cyfra1 = Integer.parseInt(screenText.substring(0, operatorIndex).trim());
+                    Cyfra2 = Integer.parseInt(screenText.substring(operatorIndex + 1).trim());
+                } catch (NumberFormatException ex) {
+                    textScreen.setText("nieprawidłowe dane");
+                    return;
+                }
+                char operator = screenText.charAt(operatorIndex);
+                int result;
+                switch (operator) {
+                    case '+':
+                        result = Cyfra1 + Cyfra2;
+                        textScreen.setText(Integer.toString(result));
+                        break;
+                    case '-':
+                        result = Cyfra1 - Cyfra2;
+                        textScreen.setText(Integer.toString(result));
+                        break;
+                    case '*':
+                        result = Cyfra1 * Cyfra2;
+                        textScreen.setText(Integer.toString(result));
+                        break;
+                    case '/':
+                        if (Cyfra2 != 0) {
+                            result = Cyfra1 / Cyfra2;
+                            textScreen.setText(Integer.toString(result));
+                        } else {
+                            textScreen.setText("nie można dzielić przez zero");
+                        }
+                        break;
+                    default:
+                        textScreen.setText("nieznany operator");
+                        break;
                 }
             }
         });
+        
        
-
-
-
         buttonPanel.add(button_C);
         buttonPanel.add(button_7);
         buttonPanel.add(button_8);
@@ -218,7 +247,7 @@ public class L01_Kalkulator extends JFrame{
         buttonPanel.add(buttonEquals);
 
 
-        mainPanel.add("Center", buttonPanel);
+        mainPanel.add("Center", buttonPanel); // panel z przyciskami
 
         setContentPane(mainPanel); // ustawia nam okienko aplikacji
         pack(); // dostosowuje rozmiar okienka aplikacji
