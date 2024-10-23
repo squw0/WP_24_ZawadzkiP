@@ -172,8 +172,8 @@ public class L01_Kalkulator extends JFrame{
         buttonEquals.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String screenText = textScreen.getText(); // pobranie zawartości ekranu
-                int operatorIndex = -1; // pozycja operatora
+                String screenText = textScreen.getText(); 
+                int operatorIndex = -1;
                 if (screenText.contains("+")) {
                     operatorIndex = screenText.indexOf("+");
                 } else if (screenText.contains("-")) {
