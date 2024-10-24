@@ -35,16 +35,6 @@ public class CalculatorView extends JFrame {
         buttonPanel.add(new JLabel()); // wstawiamy etykietę czyli puste pole
         buttonPanel.add(new JLabel()); // wstawiamy etykietę czyli puste pole
 
-        // // Inicjalizacja pola tekstowego
-        // textScreen = new JTextField();
-        // textScreen.setEditable(false);
-        // textScreen.setFont(new Font("Arial", Font.PLAIN, 24));
-        // add(textScreen, BorderLayout.NORTH);
-        
-        // Panel przycisków
-        
-        
-        // Dodawanie przycisków do panelu
         buttonPanel.add(button_7);
         buttonPanel.add(button_8);
         buttonPanel.add(button_9);
@@ -71,6 +61,8 @@ public class CalculatorView extends JFrame {
         setContentPane(mainPanel); // ustawia nam okienko aplikacji
         pack(); // dostosowuje rozmiar okienka aplikacji
         setVisible(true); // wyświetla okienko aplikacji na ekranie
+
+    
     }
 
     public String getText() {
