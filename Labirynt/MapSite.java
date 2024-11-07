@@ -1,10 +1,11 @@
 import java.awt.Image;
 
-enum Directions {North, South, East, West};
+enum Directions {NORTH, SOUTH, EAST, WEST, North};
 
 public abstract class MapSite {
-    private int x, y; // wspolrzedne elementu
-    public static final int lenght = 50; // rozmiar sciany
+    private int x, y; // wspolrzedne
+    public final static int lenght = 50; // rozmiar sciany
+
     public MapSite(int x, int y) {
         this.x = x;
         this.y = y;
@@ -24,5 +25,6 @@ public abstract class MapSite {
      * @param image - obiekt na którym rysujemy
      */
     public void draw(Image image) {
+
     }
 }
