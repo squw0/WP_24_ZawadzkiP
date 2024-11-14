@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.awt.Image;
 import javax.lang.model.util.ElementScanner14;
 
@@ -13,12 +14,7 @@ public class Door extends MapSite {
         this.isOpen = isOpen;
     }
     
-        
-    
 
-    //setY(y1)
-}
-}
 
     @Override
     public void draw(Image image){
@@ -49,5 +45,7 @@ public class Door extends MapSite {
 
     private Room roomOne;
     private Room roomTwo;
-    
 }
+
+    
+
