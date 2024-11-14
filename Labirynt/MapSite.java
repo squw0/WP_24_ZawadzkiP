@@ -27,4 +27,12 @@ public abstract class MapSite {
     public void draw(Image image) {
 
     }
+
+    public int setX(int a) {
+        return x = a;
+    }
+
+    public int setY(int b) {
+        return y = b;
+    }
 }
