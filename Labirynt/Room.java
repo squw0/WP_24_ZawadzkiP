@@ -1,21 +1,15 @@
 import java.awt.Image;
-import javax.lang.model.util.ElementScanner14;
 
 public class Room extends MapSite {
-    //private final int siteNr=4; // ilosc elementow składowych pokoi
-    //private MapSite[] sites = new MapSite[4];
-    //private int roomNumber;
 
     public Room(int x, int y, int nr){
         super(x, y);
-        //roomNumber = roomNr;
         this.nr = nr;
     }
 
-
     public void setSite(Directions d, MapSite mapsite){
         switch (d){
-            case North, WEST:
+            case NORTH, WEST:
                 if (mapsite instanceof Wall) {
                     mapsite.setX(getX());
                     mapsite.setY(getY());
