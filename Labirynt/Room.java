@@ -7,6 +7,10 @@ public class Room extends MapSite {
         this.nr = nr;
     }
 
+    // public getRoomNr(int nr){
+
+    // }
+
     public void setSite(Directions d, MapSite mapsite){
         switch (d){
             case NORTH, WEST:
@@ -49,4 +53,7 @@ public class Room extends MapSite {
     }
     private int nr; // numer pokoju
     private MapSite[] sites = new MapSite[4];
+    public int getRoomNr() {
+        return 0;
+    }
 }

@@ -9,6 +9,12 @@ public class Wall extends MapSite {
         direction = d;
     }
 
+    public Wall(Directions d) {
+        super(-1,-1);
+        direction = d;
+        
+    }
+
     @Override
     public void draw(Image image) {
         int x = getX();

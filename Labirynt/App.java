@@ -32,6 +32,15 @@ public class App extends JFrame {
         add(button, "North");
     }
 
+    // public void buildMazeBuilder(int x, int y){
+        
+
+        //DOKONCZ 
+
+
+        
+    // }
+
     public void buildMaze() {
         image = panel.getImage();
     
