@@ -1,0 +1,48 @@
+labirynt budujemy z pokojów, ścian i  drzwi(Door Wall Room)
+
+wspólne ściany są inne 
+
+abstract MapSite potrzebne są koordynaty
+
+(x,y)          (x+length, y)
+----------------
+
+
+                |(x,y)
+                |
+                |
+                |(x,y+length)
+
+
+
+
+
+ściany rozróżniamy północ południe wschód zachód
+
+class image = klasa reprezentująca obraz
+
+//To jest labirynt.java
+import java.awt.Image;
+enum Direction("North","South","East","West");
+public abstract class MapSite {
+    private int x, y; // współrzędne elementu
+    public final int LENGTH=50; // rozmiar pomieszczenia
+    public MapSite(int x, int y){
+        this.x=x;
+        this.y=y;
+    }
+
+    //*
+    rysuje elementy labiryntu
+    @param image  - obiekt na którym rysujemy
+    *//
+    public void draw(Image image){}
+}
+
+
+//To jest Wall.java
+package labirynt;
+public class Wall {
+    public Wall(int x, int y, )
+    
+}
