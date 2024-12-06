@@ -1,32 +1,26 @@
-import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Color;
+import javax.swing.JPanel;
 
 public class MyJPanel extends JPanel {
     private Image image;
-    private Maze maze;
 
-    public void setMaze(Maze maze) {
-        this.maze = maze;
+    public Image getImage(){
+        return image;
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
+    public void paint(Graphics g){
         if (image == null) {
             image = createImage(getWidth(), getHeight());
+            
+        } else{
+            g.drawImage(image,0,0,this);
         }
-
-        Graphics gImage = image.getGraphics();
-        gImage.setColor(Color.WHITE);
-        gImage.fillRect(0, 0, getWidth(), getHeight());
-
-        if (maze != null) {
-            maze.draw(gImage);
-        }
-
-        g.drawImage(image, 0, 0, this);
     }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+    
 }

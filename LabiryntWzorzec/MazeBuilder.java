@@ -6,4 +6,3 @@ public interface MazeBuilder {
 
     Maze getMaze(); // zwraca utworzyony labirynt
 }
-

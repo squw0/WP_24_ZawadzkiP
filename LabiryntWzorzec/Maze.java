@@ -1,25 +1,34 @@
-import java.awt.Graphics;
+import java.awt.Image;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
 
 public class Maze {
-    private List<Room> rooms;
+    
+    private ArrayList<Room> rooms = new ArrayList<>();
 
-    public Maze() {
-        rooms = new ArrayList<>();
-    }
-
-    public void addRoom(Room room) {
+    public void addRoom(Room room){
         rooms.add(room);
     }
+    public Room getRoomNr(int nr){
+        Room r;
 
-    public Room getRoomNr(int number) {
-        return rooms.stream().filter(r -> r.getNumber() == number).findFirst().orElse(null);
+        Iterator<Room> it = rooms.iterator();
+        while(it.hasNext()){
+            r= it.next();
+            if(r.getRoomNr() == nr){
+                return r;
+            }
+        }
+        return null;
     }
 
-    public void draw(Graphics g) {
-        for (Room room : rooms) {
-            room.draw(g);
+    public void drawMaze(Image image){
+        Room r;
+        Iterator <Room> it = rooms.iterator();
+        while(it.hasNext()){
+            r=it.next();
+            r.draw(image);
         }
     }
+
 }

@@ -1,35 +1,50 @@
 import java.awt.Graphics;
+import java.awt.Image;
 
 public class Room extends MapSite {
-    private int x, y, number;
-    private MapSite[] sides;
 
-    public Room(int x, int y, int number) {
-        this.x = x;
-        this.y = y;
-        this.number = number;
-        sides = new MapSite[4];
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public int getNumber() {
-        return number;
+    public Room(int x, int y, int nr){
+        super(x, y);
+        this.nr = nr;
     }
 
     public void setSite(Directions direction, MapSite site) {
-        sides[direction.ordinal()] = site;
+        switch (direction) {
+            case NORTH:
+                sites[0] = site;
+                break;
+            case EAST:
+                sites[1] = site;
+                break;
+            case SOUTH:
+                sites[2] = site;
+                break;
+            case WEST:
+                sites[3] = site;
+                break;
+        }
     }
+    
 
     @Override
-    public void draw(Graphics g) {
-        g.drawRect(x, y, LENGTH, LENGTH);
-        g.drawString(String.valueOf(number), x + LENGTH / 2, y + LENGTH / 2);
+    public void draw(Image image) {
+        Graphics g = image.getGraphics();
+        g.drawRect(getX(), getY(), MapSite.lenght, MapSite.lenght); // Rysowanie pokoju jako prostokąt
+    
+        // Rysowanie każdej ściany/drzwi na danej stronie
+        for (MapSite site : sites) {
+            if (site != null) {
+                site.draw(image); // Wywołanie rysowania dla ścian i drzwi
+            }
+        }
+    }
+    
+    
+    
+    
+    private int nr; // numer pokoju
+    private MapSite[] sites = new MapSite[4];
+    public int getRoomNr() {
+        return 0;
     }
 }
