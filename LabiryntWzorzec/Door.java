@@ -2,50 +2,31 @@
 import java.awt.Graphics;
 import java.awt.Image;
 
-
 public class Door extends MapSite {
+    private Room roomOne;
+    private Room roomTwo;
 
-    
-    private boolean isOpen = true;
-    
-    public Door (Room room1, Room room2){
-        super(-1,-1); // współrzędne nie są określone
-        this.roomOne = room1;
-        this.roomTwo = room2;
-        this.isOpen = isOpen;
+    public Door(Room roomOne, Room roomTwo) {
+        super(-1, -1);
+        this.roomOne = roomOne;
+        this.roomTwo = roomTwo;
     }
-    
+
     @Override
     public void draw(Image image) {
         Graphics g = image.getGraphics();
-    
-        int x1 = roomOne.getX();
-        int y1 = roomOne.getY();
-        int x2 = roomTwo.getX();
-        int y2 = roomTwo.getY();
-    
-        // Rysowanie drzwi między pokojami
-        if (x1 == x2) {
-            // Drzwi poziome
-            int doorX = x1 + MapSite.lenght / 2;
-            int doorYStart = Math.min(y1, y2) + MapSite.lenght;
-            int doorYEnd = doorYStart - MapSite.lenght / 3;
-            g.drawLine(doorX, doorYStart, doorX, doorYEnd);
+        int doorLength = MapSite.lenght / 3;
+
+        if (roomOne.getX() == roomTwo.getX()) {
+            int x = roomOne.getX();
+            int y = Math.max(roomOne.getY(), roomTwo.getY());
+            g.drawLine(x, y, x + (MapSite.lenght - doorLength) / 2, y);
+            g.drawLine(x + MapSite.lenght - (MapSite.lenght - doorLength) / 2, y, x + MapSite.lenght, y);
         } else {
-            // Drzwi pionowe
-            int doorY = y1 + MapSite.lenght / 2;
-            int doorXStart = Math.min(x1, x2) + MapSite.lenght;
-            int doorXEnd = doorXStart - MapSite.lenght / 3;
-            g.drawLine(doorXStart, doorY, doorXEnd, doorY);
+            int y = roomOne.getY();
+            int x = Math.max(roomOne.getX(), roomTwo.getX());
+            g.drawLine(x, y, x, y + (MapSite.lenght - doorLength) / 2);
+            g.drawLine(x, y + MapSite.lenght - (MapSite.lenght - doorLength) / 2, x, y + MapSite.lenght);
         }
     }
-    
-    
-    
-
-    private Room roomOne;
-    private Room roomTwo;
 }
-
-    
-

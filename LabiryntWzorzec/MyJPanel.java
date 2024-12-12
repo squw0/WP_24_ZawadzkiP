@@ -1,26 +1,20 @@
-import java.awt.Graphics;
-import java.awt.Image;
-import javax.swing.JPanel;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class MyJPanel extends JPanel {
     private Image image;
 
-    public Image getImage(){
+    public Image getImage() {
         return image;
     }
 
     @Override
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
         if (image == null) {
             image = createImage(getWidth(), getHeight());
-            
-        } else{
-            g.drawImage(image,0,0,this);
+        } else {
+            g.drawImage(image, 0, 0, this);
         }
     }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-    
 }

@@ -1,10 +1,9 @@
+
 import java.awt.Image;
 
-enum Directions {NORTH, SOUTH, EAST, WEST, North};
-
 public abstract class MapSite {
-    private int x, y; // wspolrzedne
-    public final static int lenght = 50; // rozmiar sciany
+    private int x, y;
+    public final static int lenght = 50;
 
     public MapSite(int x, int y) {
         this.x = x;
@@ -19,15 +18,6 @@ public abstract class MapSite {
         return y;
     }
 
-    /**
-     * Rysuje element labiryntu
-     * 
-     * @param image - obiekt na którym rysujemy
-     */
-    public void draw(Image image) {
-
-    }
-
     public int setX(int a) {
         return x = a;
     }
@@ -35,4 +25,6 @@ public abstract class MapSite {
     public int setY(int b) {
         return y = b;
     }
+
+    public void draw(Image image) {}
 }
