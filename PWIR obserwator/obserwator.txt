@@ -1,0 +1,17 @@
+Wprowadzenie
+Wzorce projektowe są nieodzownym elementem programowania obiektowego, umożliwiając tworzenie elastycznych i skalowalnych aplikacji. Jednym z najbardziej powszechnych wzorców jest Obserwator (ang. Observer), który znajduje zastosowanie w sytuacjach wymagających powiadamiania wielu obiektów o zmianach stanu innego obiektu. Celem tego referatu jest przedstawienie istoty wzorca Obserwator, jego zalet oraz przykładowych zastosowań.
+
+Opis wzorca
+Wzorzec Obserwator należy do grupy wzorców behawioralnych. Jego głównym założeniem jest utworzenie zależności "jeden do wielu" między obiektami, w której jeden obiekt (nazywany obiektem obserwowanym) informuje inne obiekty (zwane obserwatorami) o zmianach swojego stanu.
+
+Wzorzec ten składa się z następujących elementów:
+
+Obiekt obserwowany (Subject) – zarządza listą obserwatorów i powiadamia ich o zmianach.
+Obserwatorzy (Observers) – implementują interfejs umożliwiający odbieranie powiadomień od obiektu obserwowanego.
+Mechanizm komunikacji – odpowiedzialny za informowanie obserwatorów o zmianach w obiekcie obserwowanym.
+Przykłady zastosowań
+Wzorzec Obserwator znajduje zastosowanie w wielu dziedzinach informatyki:
+
+Systemy powiadomień: np. subskrypcje wiadomości w aplikacjach e-mail lub powiadomienia o promocjach w sklepach internetowych.
+Gry komputerowe: aktualizacja stanu wielu obiektów w czasie rzeczywistym, np. monitorowanie punktacji w grach multiplayer.
+Systemy czasu rzeczywistego: np. monitoring stanu urządzeń IoT lub aktualizacja danych na dashboardach.
