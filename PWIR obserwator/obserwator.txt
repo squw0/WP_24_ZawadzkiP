@@ -15,3 +15,51 @@ Wzorzec Obserwator znajduje zastosowanie w wielu dziedzinach informatyki:
 Systemy powiadomień: np. subskrypcje wiadomości w aplikacjach e-mail lub powiadomienia o promocjach w sklepach internetowych.
 Gry komputerowe: aktualizacja stanu wielu obiektów w czasie rzeczywistym, np. monitorowanie punktacji w grach multiplayer.
 Systemy czasu rzeczywistego: np. monitoring stanu urządzeń IoT lub aktualizacja danych na dashboardach.
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Czym jest wzorzec Obserwator?
+Wzorzec Obserwator to mechanizm, który pozwala na utworzenie zależności "jeden do wielu". W praktyce oznacza to, że kiedy jeden obiekt zmienia swój stan, wiele innych obiektów, które go obserwują, zostaje o tym automatycznie poinformowanych.
+
+W moim przykładzie:
+
+Produkt w sklepie internetowym to obiekt, który może być obserwowany.
+Klienci są obserwatorami, czyli subskrybentami zmian produktu.
+Gdy cena produktu zmienia się, klienci są automatycznie powiadamiani.
+Jak działa mechanizm?
+1. Rejestracja klientów (subskrypcja):
+Klienci, którzy są zainteresowani produktem, rejestrują się, aby otrzymywać powiadomienia. W praktyce, są dodawani do listy obserwatorów produktu.
+
+2. Zmiana ceny produktu:
+Kiedy cena produktu się zmienia, produkt informuje wszystkich swoich obserwatorów o tej zmianie.
+
+3. Powiadamianie klientów:
+Każdy klient, który jest na liście obserwatorów, otrzymuje powiadomienie. Może to być wiadomość na ekranie lub e-mail z nową ceną produktu.
+
+4. Usuwanie klientów:
+Klient może w każdej chwili zrezygnować z subskrypcji i przestać otrzymywać powiadomienia o produkcie.
+
+Przykład scenariusza
+Wyobraźmy sobie następującą sytuację:
+
+Klient Anna subskrybuje powiadomienia o produkcie „Smartfon”.
+Klient Marek robi to samo.
+Cena smartfona spada z 2000 zł na 1800 zł.
+Produkt powiadamia Annę i Marka:
+Anna widzi komunikat: „Nowa cena produktu to 1800 zł”.
+Marek dostaje e-mail z tą samą informacją.
+Anna rezygnuje z subskrypcji.
+Cena smartfona spada na 1500 zł, ale tym razem powiadomienie dostaje już tylko Marek.
+Dlaczego warto korzystać z Obserwatora?
+Automatyzacja: Zmiana ceny automatycznie powiadamia klientów, bez ręcznego wysyłania informacji.
+
+Elastyczność: Możemy dynamicznie dodawać lub usuwać klientów z listy obserwatorów.
+
+Personalizacja: Klienci subskrybują tylko te produkty, które ich interesują.
+
+Prostota: Kod jest łatwy do utrzymania, ponieważ produkt i klienci działają niezależnie, a mechanizm powiadamiania ich łączy.
+
+Podsumowanie
+Wzorzec Obserwator to bardzo uniwersalne narzędzie w programowaniu. Umożliwia automatyczne powiadamianie o zmianach i znacząco upraszcza komunikację między różnymi elementami systemu. W przypadku sklepu internetowego taki mechanizm jest szczególnie przydatny, bo pozwala klientom być na bieżąco z cenami produktów, które ich interesują.
