@@ -6,7 +6,7 @@ Wzorzec Obserwator należy do grupy wzorców behawioralnych. Jego głównym zał
 
 Wzorzec ten składa się z następujących elementów:
 
-Obiekt obserwowany (Subject) – zarządza listą obserwatorów i powiadamia ich o zmianach.
+Obiekt obserwowany (Subject) – zarządza listą obserwatorów i powiadamia ich o zmianach. 
 Obserwatorzy (Observers) – implementują interfejs umożliwiający odbieranie powiadomień od obiektu obserwowanego.
 Mechanizm komunikacji – odpowiedzialny za informowanie obserwatorów o zmianach w obiekcie obserwowanym.
 Przykłady zastosowań
