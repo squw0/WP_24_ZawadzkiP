@@ -1,0 +1,38 @@
+
+Referat na temat: Wzorzec Obserwator na przykładzie sklepu internetowego
+
+1. Wstęp
+Wzorzec projektowy Obserwator jest jednym z kluczowych wzorców stosowanych w programowaniu obiektowym. Jego głównym celem jest umożliwienie obserwatorom (subskrybentom) otrzymywania powiadomień o zmianach zachodzących w obiektach, które są obserwowane. W naszym projekcie zastosowaliśmy wzorzec Obserwator w kontekście sklepu internetowego, gdzie użytkownicy mogą subskrybować produkty, aby otrzymywać informacje o ich dostępności i zmianach cen.
+
+2. Opis wzorca Obserwator
+Wzorzec Obserwator składa się z dwóch głównych elementów:
+- Interfejsu Subject, który definiuje metody dodawania, usuwania i powiadamiania obserwatorów.
+- Interfejsu Observer, który definiuje metodę aktualizacji wywoływaną przez Subject.
+
+Dzięki takiemu podejściu możliwe jest odseparowanie logiki powiadomień od logiki obserwowanych obiektów, co prowadzi do lepszej modularności kodu.
+
+3. Realizacja projektu
+Naszym celem było stworzenie aplikacji sklepu internetowego, w którym użytkownicy mogą subskrybować produkty i otrzymywać powiadomienia w przypadku:
+- Zmiany ceny produktu.
+- Zmiany dostępności produktu.
+
+Projekt składa się z następujących klas:
+- **Observer** - interfejs definiujący metodę `update`.
+- **Subject** - interfejs definiujący metody zarządzania obserwatorami.
+- **Product** - klasa implementująca Subject, zarządzająca listą obserwatorów i powiadamiająca ich o zmianach.
+- **User** - klasa implementująca Observer, reprezentująca użytkowników sklepu.
+- **Main** - klasa główna demonstrująca działanie aplikacji.
+
+4. Działanie programu
+W programie użytkownicy subskrybują produkty, a następnie są powiadamiani o każdej zmianie dotyczącej tych produktów. Na przykład:
+- Gdy produkt stanie się dostępny, użytkownik otrzymuje powiadomienie.
+- Gdy cena produktu ulegnie zmianie, użytkownik zostaje o tym poinformowany.
+
+5. Korzyści ze stosowania wzorca Obserwator
+Zastosowanie wzorca Obserwator pozwala na:
+- Lepszą modularność kodu poprzez odseparowanie logiki powiadomień od logiki obserwowanych obiektów.
+- Łatwe dodawanie nowych typów obserwatorów bez modyfikacji kodu produktu.
+- Zwiększenie czytelności i elastyczności aplikacji.
+
+6. Podsumowanie
+Wzorzec Obserwator jest niezwykle przydatnym rozwiązaniem w sytuacjach, gdy wiele obiektów musi reagować na zmiany w stanie jednego obiektu. W kontekście sklepu internetowego wzorzec ten pozwala na łatwe zarządzanie subskrypcjami i powiadomieniami, co znacząco poprawia doświadczenie użytkowników. W naszym projekcie zaprezentowaliśmy praktyczne zastosowanie tego wzorca, tworząc aplikację umożliwiającą subskrypcję produktów przez użytkowników.
