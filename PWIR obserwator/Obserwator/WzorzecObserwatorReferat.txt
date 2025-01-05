@@ -36,3 +36,32 @@ Zastosowanie wzorca Obserwator pozwala na:
 
 6. Podsumowanie
 Wzorzec Obserwator jest niezwykle przydatnym rozwiązaniem w sytuacjach, gdy wiele obiektów musi reagować na zmiany w stanie jednego obiektu. W kontekście sklepu internetowego wzorzec ten pozwala na łatwe zarządzanie subskrypcjami i powiadomieniami, co znacząco poprawia doświadczenie użytkowników. W naszym projekcie zaprezentowaliśmy praktyczne zastosowanie tego wzorca, tworząc aplikację umożliwiającą subskrypcję produktów przez użytkowników.
+
+
+
+
+.......
+
+Wytłumaczenie działania wzorca Obserwator:
+
+Wyobraźcie sobie, że prowadzimy sklep internetowy. W sklepie są produkty, na przykład laptop czy telefon. Każdy z was, jako klient, może powiedzieć: "Chcę wiedzieć, kiedy ten laptop potanieje albo stanie się dostępny". To właśnie subskrypcja produktu.
+
+Jak to działa w naszym programie:
+
+Jest "obserwowany" produkt:
+
+Produkt to nasz laptop.
+Laptop "wie", kto go obserwuje, czyli kto chce dostawać powiadomienia.
+Są obserwatorzy:
+
+Wy, jako klienci (użytkownicy), jesteście obserwatorami.
+Jak tylko coś się zmienia w produkcie (np. zmienia się cena), produkt wysyła wam powiadomienie, że coś się zmieniło.
+Działa to automatycznie:
+
+Laptop mówi: "Hej, zmieniłem cenę na 2000 zł, powiedz o tym wszystkim, którzy mnie obserwują".
+Wy (obserwatorzy) dostajecie wiadomość: "Cena laptopa zmieniła się na 2000 zł".
+Podsumowując:
+
+Wzorzec Obserwator to taki system, gdzie jeden obiekt (produkt) mówi do wielu innych (klientów): "Hej, coś się zmieniło!".
+Dzięki temu klient zawsze wie, co się dzieje z jego ulubionymi produktami, bez sprawdzania tego ręcznie.
+To tak, jakbyście subskrybowali kanał na YouTube – dostajecie powiadomienia o nowych filmach bez konieczności sprawdzania co chwilę.
