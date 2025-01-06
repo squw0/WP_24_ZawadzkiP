@@ -65,3 +65,10 @@ Podsumowując:
 Wzorzec Obserwator to taki system, gdzie jeden obiekt (produkt) mówi do wielu innych (klientów): "Hej, coś się zmieniło!".
 Dzięki temu klient zawsze wie, co się dzieje z jego ulubionymi produktami, bez sprawdzania tego ręcznie.
 To tak, jakbyście subskrybowali kanał na YouTube – dostajecie powiadomienia o nowych filmach bez konieczności sprawdzania co chwilę.
+
+
+
+..................
+
+poprawka w prezentacji + coś dopisz
+
