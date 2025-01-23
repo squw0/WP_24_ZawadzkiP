@@ -1,18 +1,27 @@
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class App extends JFrame {
     private MyJPanel panel;
     private Image image;
+    private ConcreteBuilder cb; 
 
     public App() {
-        setSize(500, 500);
+        setSize(350, 350);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new MyJPanel();
         JButton button = new JButton("Draw");
+        JButton buttonBomb = new JButton("Bomb");
+
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -23,44 +32,68 @@ public class App extends JFrame {
             }
         });
 
+        buttonBomb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (image != null && cb != null) { 
+                    addBombsToMaze(cb.getMaze());
+                }
+            }
+        });
+
         setLayout(new BorderLayout());
         add(panel, BorderLayout.CENTER);
-        add(button, BorderLayout.NORTH);
+        JPanel menuPanel = new JPanel(new GridLayout(1, 2));
+        menuPanel.add(button);
+        menuPanel.add(buttonBomb);
+        add(menuPanel, "North");
     }
 
     public void buildMaze() {
-        int x = 100;
+        cb = new ConcreteBuilder();
+        int x = 50;
         int y = 100;
         buildMazeBuilder(x, y);
     }
 
     public void buildMazeBuilder(int x, int y) {
-        ConcreteBuilder concreteBuilder = new ConcreteBuilder();
-        concreteBuilder.buildMaze();
+        cb.buildMaze();
 
-        concreteBuilder.buildRoom(1, x, y);
-        concreteBuilder.buildRoom(2, x, y - MapSite.lenght);
-        concreteBuilder.buildDoor(1, 2);
+        cb.buildRoom(1, x, y);
+        cb.buildRoom(2, x, y + MapSite.lenght);
+        cb.buildDoor(1, 2);
 
-        concreteBuilder.buildRoom(3, x, y + MapSite.lenght);
-        concreteBuilder.buildDoor(1, 3);
+        cb.buildRoom(3, x, y - MapSite.lenght);
+        cb.buildDoor(1, 3);
 
-        concreteBuilder.buildRoom(4, x + MapSite.lenght, y);
-        concreteBuilder.buildDoor(1, 4);
+        cb.buildRoom(4, x + MapSite.lenght, y);
+        cb.buildDoor(1, 4);
 
-        concreteBuilder.buildRoom(5, x + (MapSite.lenght * 2), y);
-        concreteBuilder.buildDoor(4, 5);
+        cb.buildRoom(5, x + (MapSite.lenght * 2), y);
+        cb.buildDoor(4, 5);
 
-        concreteBuilder.buildRoom(6, x + (MapSite.lenght * 2), y - MapSite.lenght);
-        concreteBuilder.buildDoor(5, 6);
+        cb.buildRoom(6, x + (MapSite.lenght * 2), y - MapSite.lenght);
+        cb.buildDoor(5, 6);
 
-        concreteBuilder.buildRoom(7, x + (MapSite.lenght * 2), y + MapSite.lenght);
-        concreteBuilder.buildDoor(5, 7);
+        cb.buildRoom(7, x + (MapSite.lenght * 2), y + MapSite.lenght);
+        cb.buildDoor(5, 7);
 
-        concreteBuilder.buildRoom(8, x + (MapSite.lenght * 3), y);
-        concreteBuilder.buildDoor(5, 8);
+        cb.buildRoom(8, x + (MapSite.lenght * 3), y);
+        cb.buildDoor(5, 8);
 
-        Maze maze = concreteBuilder.getMaze();
+        Maze maze = cb.getMaze();
+        maze.drawMaze(image);
+        panel.repaint();
+    }
+
+    public void addBombsToMaze(Maze maze) {
+        Random random = new Random();
+        for (int i = 1; i <= 8; i++) {
+            Room room = maze.getRoomNr(i);
+            if (room != null) {
+                room.setBomb(random.nextBoolean());
+            }
+        }
         maze.drawMaze(image);
         panel.repaint();
     }

@@ -1,4 +1,5 @@
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +21,14 @@ public class Maze {
     }
 
     public void drawMaze(Image image) {
+        Graphics g = image.getGraphics();
         for (Room room : rooms) {
-            room.draw(image);
+            room.draw(image); // Rysowanie pokoju, drzwi i ścian
+            if (room.hasBomb()) {
+                int x = room.getX() + MapSite.lenght / 2 - 5;
+                int y = room.getY() + MapSite.lenght / 2 + 5;
+                g.drawString("$", x, y); // Rysowanie bomby w środku pokoju
+            }
         }
     }
-}
+}    

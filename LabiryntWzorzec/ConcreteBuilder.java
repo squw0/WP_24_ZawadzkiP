@@ -8,16 +8,17 @@ public class ConcreteBuilder implements MazeBuilder {
 
     @Override
     public void buildMaze() {
-        maze = new Maze();
+        maze = new Maze(); 
     }
 
     @Override
     public void buildRoom(int roomNr, int x, int y) {
         Room room = new Room(x, y, roomNr);
         room.setSite(Directions.NORTH, new Wall(Directions.NORTH));
-        room.setSite(Directions.EAST, new Wall(Directions.EAST));
         room.setSite(Directions.SOUTH, new Wall(Directions.SOUTH));
         room.setSite(Directions.WEST, new Wall(Directions.WEST));
+        room.setSite(Directions.EAST, new Wall(Directions.EAST));
+
         maze.addRoom(room);
     }
 
@@ -27,33 +28,23 @@ public class ConcreteBuilder implements MazeBuilder {
         Room roomTwo = maze.getRoomNr(roomTwoNr);
 
         if (roomOne != null && roomTwo != null) {
-            Directions direction = commonWall(roomOne, roomTwo);
-            Door door = new Door(roomOne, roomTwo);
-
-            roomOne.setSite(direction, door);
-            roomTwo.setSite(direction.opposite(), door);
+            Directions commonWallDirection = commonWall(roomOne, roomTwo);
+            Door door = new Door(roomOne, roomTwo); 
+            roomOne.setSite(commonWallDirection, door);
+            roomTwo.setSite(commonWall(roomTwo, roomOne), door);
         }
-    }
-
-    private Directions commonWall(Room roomOne, Room roomTwo) {
-        if (roomOne.getX() == roomTwo.getX()) {
-            if (roomOne.getY() < roomTwo.getY()) {
-                return Directions.SOUTH;
-            } else {
-                return Directions.NORTH;
-            }
-        } else if (roomOne.getY() == roomTwo.getY()) {
-            if (roomOne.getX() < roomTwo.getX()) {
-                return Directions.EAST;
-            } else {
-                return Directions.WEST;
-            }
-        }
-        throw new IllegalArgumentException("zwariowałeś?");
     }
 
     @Override
     public Maze getMaze() {
         return maze;
+    }
+
+    private Directions commonWall(Room roomOne, Room roomTwo) {
+        if (roomOne.getX() == roomTwo.getX()) {
+            return (roomOne.getY() < roomTwo.getY()) ? Directions.SOUTH : Directions.NORTH;
+        } else {
+            return (roomOne.getX() < roomTwo.getX()) ? Directions.EAST : Directions.WEST;
+        }
     }
 }

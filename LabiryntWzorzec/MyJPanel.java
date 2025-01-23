@@ -1,6 +1,6 @@
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class MyJPanel extends JPanel {
     private Image image;
