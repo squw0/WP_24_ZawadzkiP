@@ -1,7 +1,7 @@
 public class MazeSingleton {
     private static Maze instance;
 
-    private MazeSingleton() {} // Prywatny konstruktor
+    private MazeSingleton() {}
 
     public static Maze getInstance() {
         if (instance == null) {

@@ -23,10 +23,10 @@ public class Maze {
         return rooms;
     }
 
-    public void drawMaze(Image image) {  // Dodana metoda
+    public void drawMaze(Image image) {
         Graphics g = image.getGraphics();
         for (Room room : rooms) {
-            room.draw(image);  // Rysowanie pokoju, drzwi i ścian
+            room.draw(image);
         }
     }
 }

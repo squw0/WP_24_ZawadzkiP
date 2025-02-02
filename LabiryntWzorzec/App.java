@@ -59,7 +59,7 @@ public class App extends JFrame {
     }
 
     public void buildMaze() {
-        MazeFactory factory = new BombedMazeFactory(); // Użycie fabryki z wysadzalnymi ścianami
+        MazeFactory factory = new BombedMazeFactory();
         cb = new ConcreteBuilder(factory);
         int x = 50;
         int y = 100;
@@ -109,7 +109,7 @@ public class App extends JFrame {
     }
 
     public void blowUpWall(Maze maze) {
-        for (Room room : maze.getRooms()) { // Zakładam, że metoda getRooms() zwraca listę pokoi
+        for (Room room : maze.getRooms()) { 
             for (Directions dir : Directions.values()) {
                 MapSite site = room.getSite(dir);
                 if (site instanceof BombedWall) {
