@@ -1,4 +1,3 @@
-
 public interface MazeBuilder {
     void buildMaze();
     void buildRoom(int roomNr, int x, int y);

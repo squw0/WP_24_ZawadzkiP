@@ -1,24 +1,25 @@
 
 public class ConcreteBuilder implements MazeBuilder {
     private Maze maze;
+    private MazeFactory factory;
 
-    public ConcreteBuilder() {
-        maze = new Maze();
+    public ConcreteBuilder(MazeFactory factory) {
+        this.factory = factory;
+        maze = MazeSingleton.getInstance();
     }
 
     @Override
     public void buildMaze() {
-        maze = new Maze(); 
+        maze = MazeSingleton.getInstance();
     }
 
     @Override
     public void buildRoom(int roomNr, int x, int y) {
-        Room room = new Room(x, y, roomNr);
-        room.setSite(Directions.NORTH, new Wall(Directions.NORTH));
-        room.setSite(Directions.SOUTH, new Wall(Directions.SOUTH));
-        room.setSite(Directions.WEST, new Wall(Directions.WEST));
-        room.setSite(Directions.EAST, new Wall(Directions.EAST));
-
+        Room room = factory.createRoom(roomNr, x, y);
+        room.setSite(Directions.NORTH, factory.createWall(Directions.NORTH));
+        room.setSite(Directions.SOUTH, factory.createWall(Directions.SOUTH));
+        room.setSite(Directions.WEST, factory.createWall(Directions.WEST));
+        room.setSite(Directions.EAST, factory.createWall(Directions.EAST));
         maze.addRoom(room);
     }
 
@@ -29,7 +30,7 @@ public class ConcreteBuilder implements MazeBuilder {
 
         if (roomOne != null && roomTwo != null) {
             Directions commonWallDirection = commonWall(roomOne, roomTwo);
-            Door door = new Door(roomOne, roomTwo); 
+            Door door = factory.createDoor(roomOne, roomTwo);
             roomOne.setSite(commonWallDirection, door);
             roomTwo.setSite(commonWall(roomTwo, roomOne), door);
         }

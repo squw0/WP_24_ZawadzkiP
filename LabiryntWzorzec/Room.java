@@ -1,4 +1,4 @@
-
+// Dodanie brakujących importów
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -12,25 +12,26 @@ public class Room extends MapSite {
         this.number = number;
     }
 
+    public void setBomb(boolean hasBomb) {
+        this.hasBomb = hasBomb;
+    }
+
     public boolean hasBomb() {
         return hasBomb;
     }
 
-    public void setBomb(boolean hasBomb) {
-        this.hasBomb = hasBomb;
+    public void setSite(Directions direction, MapSite site) {
+        sides[direction.ordinal()] = site;
+        site.setX(getX());
+        site.setY(getY());
     }
-    
+
+    public MapSite getSite(Directions direction) {
+        return sides[direction.ordinal()];
+    }
 
     public int getRoomNr() {
         return number;
-    }
-
-    public void setSite(Directions direction, MapSite site) {
-        sides[direction.ordinal()] = site;
-        if (site instanceof Wall) {
-            site.setX(getX());
-            site.setY(getY());
-        }
     }
 
     @Override
@@ -38,15 +39,15 @@ public class Room extends MapSite {
         Graphics g = image.getGraphics();
         int x = getX();
         int y = getY();
-    
+
         for (MapSite side : sides) {
             if (side != null) {
                 side.draw(image);
             }
         }
-    
+
         if (hasBomb) {
             g.drawString("$", x + MapSite.lenght / 2 - 5, y + MapSite.lenght / 2 + 5);
         }
     }
-}
+} 
